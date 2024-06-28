@@ -7,6 +7,8 @@ import {
 } from 'react-router-dom';
 import NoteState from './context/notes/NoteState';
 import About from './components/About';
+import Home from './components/Home';
+import Alert from './components/Alert';
 
 function App() {
   return (
@@ -14,10 +16,13 @@ function App() {
       <NoteState>
         <Router>
           <Navbar />
-          <Routes>
-            <Route path="/" element={<h1>Home</h1>} />
-            <Route path="/about" element= <About/> />
-          </Routes>
+          <Alert message="hello"/>
+          <div className="container">
+            <Routes>
+              <Route path="/" element= < Home/> />
+              <Route path="/about" element= < About /> />
+            </Routes>
+          </div>
         </Router>
       </NoteState>
     </>
