@@ -19,18 +19,13 @@ const Notes = () => {
     // eslint-disable-next-line
   }, [])
 
-  useEffect(() => {
-    if (editNoteCalled) {
-      fetchnote();
-      setEditNoteCalled(false); // Reset the state to false after calling fetchnote
-    }
-    // eslint-disable-next-line
-  }, [editNoteCalled]);
 
-  const handleClick = (e) => {
-    editnote(note.id, note.etitle, note.edescription, note.etag)
+  const handleClick = async (e) => {
+    await editnote(note.id, note.etitle, note.edescription, note.etag)
     refClose.current.click();
-    setEditNoteCalled(true);
+    // setEditNoteCalled(true);  // This is not required
+    //* Using async and await to make sure that the note is updated before fetching the notes again thus not reqiured to use useEffect
+    await fetchnote();
   }
 
 
