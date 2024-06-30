@@ -23,8 +23,6 @@ const NoteState = (props) => {
   }
 
 
-
-
   //* Add a Note
   const addnote = async(title, description, tag) => {
     
@@ -59,11 +57,7 @@ const NoteState = (props) => {
         }
   
       });
-      
-
-
-
-
+   
     const newnotes = notes.filter((note) => { return note._id !== _id })
     setnotes(newnotes);
 

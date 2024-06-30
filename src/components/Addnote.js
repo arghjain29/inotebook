@@ -15,6 +15,7 @@ const Addnote = () => {
     const onChange = (e) => {
         setnote({ ...note, [e.target.name]: e.target.value })
     }
+    const chkdata = (note.title.length === 0 || note.description.length === 0 || note.tag.length === 0);
     return (
         <div>
             <div className="container my-3">
@@ -35,7 +36,7 @@ const Addnote = () => {
                     </div>
                     
                     
-                    <button type="submit" className="btn btn-success" onClick={handleClick}>Add Note</button>
+                    <button type="submit" className="btn btn-success" disabled={chkdata} onClick={handleClick}>Add Note</button>
                 </form>
             </div>
 
