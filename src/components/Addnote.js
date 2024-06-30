@@ -7,10 +7,12 @@ const Addnote = () => {
     const { addnote } = context;
 
     const [note,setnote] = useState({title:"",description:"",tag:""});
-
+    
+    
     const handleClick = (e) => {
         e.preventDefault();
         addnote(note.title,note.description,note.tag);
+        setnote({title:"",description:"",tag:""});
     }
     const onChange = (e) => {
         setnote({ ...note, [e.target.name]: e.target.value })
@@ -23,16 +25,16 @@ const Addnote = () => {
                 <form>
                     <div className="mb-3 my-3">
                         <label htmlFor="title" className="form-label">Title</label>
-                        <input type="text" className="form-control" id="title" name= "title" aria-describedby="emailHelp" onChange={onChange}/>
+                        <input type="text" className="form-control" id="title" value={note.title} name= "title" aria-describedby="emailHelp" onChange={onChange}/>
                         {/* <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div> */}
                     </div>
                     <div className="mb-3">
                         <label htmlFor="description" className="form-label">Description</label>
-                        <input type="text" className="form-control" id="description" name="description" onChange={onChange} />
+                        <input type="text" className="form-control" value={note.description} id="description" name="description" onChange={onChange} />
                     </div>
                     <div className="mb-3">
                         <label htmlFor="tag" className="form-label">Tag</label>
-                        <input type="text" className="form-control" id="tag" name="tag" onChange={onChange} />
+                        <input type="text" className="form-control" value={note.tag} id="tag" name="tag" onChange={onChange} />
                     </div>
                     
                     
