@@ -19,6 +19,7 @@ const Login = (props) => {
     
     if (json.success) {
       localStorage.setItem('token', json.AuthTokken);
+      console.log(json.AuthTokken);
       navigate('/'); // redirect to home page
       showAlert("Logged in successfully", "success");
     } else {

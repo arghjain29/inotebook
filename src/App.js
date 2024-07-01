@@ -12,6 +12,7 @@ import Home from './components/Home';
 import Alert from './components/Alert';
 import Signup from './components/Signup';
 import Login from './components/Login';
+import UserInfo from './components/UserInfo';
 
 
 
@@ -40,6 +41,7 @@ function App() {
               <Route path="/about" element=< About /> />
               <Route path="/login" element=< Login showAlert={showAlert} /> />
               <Route path="/signup" element=< Signup showAlert={showAlert} /> />
+              <Route path="/userinfo" element=< UserInfo showAlert={showAlert} /> />
 
             </Routes>
           </div>

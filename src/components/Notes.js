@@ -2,37 +2,45 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import noteContext from '../context/notes/NoteContext'
 import NoteItem from './NoteItem';
 import Addnote from './Addnote';
+import { useNavigate } from 'react-router-dom';
 
 
 const Notes = (props) => {
   const context = useContext(noteContext);
   const { notes, fetchnote, editnote } = context;
 
+  const navigate = useNavigate();
+
   const ref = useRef(null)
   const refClose = useRef(null)
   const [note, setNote] = useState({ id: "", etitle: "", edescription: "", etag: "" })
-  const {showAlert} = props.showAlert;
+
 
 
   useEffect(() => {
-    fetchnote();
-    // eslint-disable-next-line
+    if (localStorage.getItem('token')) {
+      fetchnote();
+      // eslint-disable-next-line
+    } else {
+      navigate('/login');
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-
 
   const handleClick = async (e) => {
     await editnote(note.id, note.etitle, note.edescription, note.etag)
     refClose.current.click();
-    showAlert("Note Updated Successfully", "success");
     // setEditNoteCalled(true);  // This is not required
     //* Using async and await to make sure that the note is updated before fetching the notes again thus not reqiured to use useEffect
     await fetchnote();
+    props.showAlert("Note Updated Successfully", "success");
   }
 
 
   const updateNote = (currentNote) => {
     ref.current.click();
     setNote({ id: currentNote._id, etitle: currentNote.title, edescription: currentNote.description, etag: currentNote.tag })
+
   }
 
   const onChange = (e) => {
@@ -41,7 +49,7 @@ const Notes = (props) => {
 
   return (
     <>
-      <Addnote />
+      <Addnote showAlert={props.showAlert} />
       <button ref={ref} type="button" className="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#exampleModal">
         Launch demo modal
       </button>
@@ -84,7 +92,7 @@ const Notes = (props) => {
 
         {notes.length === 0 && <div className='container'>No notes to display</div>}
         {notes.map((note) => {
-          return <NoteItem note={note} showAlert={showAlert} updateNote={updateNote} key={note._id} />;
+          return <NoteItem note={note} showAlert={props.showAlert} updateNote={updateNote} key={note._id} />;
         })}
       </div>
     </>
