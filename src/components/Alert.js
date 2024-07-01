@@ -7,6 +7,7 @@ const Alert = (props) => {
                 {props.message}
             </div>
         </div>
+        
     )
 }
 

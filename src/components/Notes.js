@@ -11,7 +11,7 @@ const Notes = () => {
   const ref = useRef(null)
   const refClose = useRef(null)
   const [note, setNote] = useState({ id: "", etitle: "", edescription: "", etag: "" })
-  const [editNoteCalled, setEditNoteCalled] = useState(false);
+  
 
 
   useEffect(() => {
