@@ -1,17 +1,12 @@
-// import React, { useContext } from 'react'
-// import noteContext from '../context/notes/NoteContext'
 import React from 'react'
 import Notes from './Notes';
 
-export default function Home() {
-
-    // const context = useContext(noteContext);
-    // const { notes, setnotes } = context;
+export default function Home(props) {
 
     return (
         <div>
            <div className="container my-3">
-                <Notes/>
+                <Notes showAlert={props.showAlert}/>
             </div>
 
         </div>

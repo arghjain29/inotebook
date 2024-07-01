@@ -8,8 +8,8 @@ const NoteState = (props) => {
   const [notes, setnotes] = useState(notesinitial);
 
   //* Fetch All Note
-  const fetchnote = async() => {
-    
+  const fetchnote = async () => {
+
     //! API call here
     const response = await fetch(`${host}/api/notes/fetchallnotes`, {
       method: 'GET',
@@ -24,8 +24,8 @@ const NoteState = (props) => {
 
 
   //* Add a Note
-  const addnote = async(title, description, tag) => {
-    
+  const addnote = async (title, description, tag) => {
+
     //! API call here
     const response = await fetch(`${host}/api/notes/addnote`, {
       method: 'POST',
@@ -37,7 +37,7 @@ const NoteState = (props) => {
       body: JSON.stringify({ title, description, tag })
 
     });
-    
+
     setnotes(notes.concat({ title, description, tag }))
 
   }
@@ -46,8 +46,9 @@ const NoteState = (props) => {
   //* Delete a Note
 
   const deletenote = async (_id) => {
-    
-    //! API call here
+
+    try {
+      //! API call here
       const response = await fetch(`${host}/api/notes/deletenote/${_id}`, {
         method: 'DELETE',
         headers: {
@@ -55,17 +56,23 @@ const NoteState = (props) => {
           // 'auth-token': localStorage.getItem('token')
           'auth-token': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjY3YzQyMWZkMzQ1YjJkZDI5MzFiZTJiIn0sImlhdCI6MTcxOTQ5NzgyMX0.oUimNk_GOEiGI2B5CiZ90Tx1715fEmZYRAz9iAB_VQk"
         }
-  
+
       });
-   
-    const newnotes = notes.filter((note) => { return note._id !== _id })
-    setnotes(newnotes);
+
+      const newnotes = notes.filter((note) => { return note._id !== _id })
+      setnotes(newnotes);
+
+    } catch (error) {
+
+    }
+
+
 
   }
 
   //* Edit a Note
   const editnote = async (_id, title, description, tag) => {
-   
+
     //! API call here
     const response = await fetch(`${host}/api/notes/updatenote/${_id}`, {
       method: 'PUT',
@@ -87,7 +94,7 @@ const NoteState = (props) => {
         break;
       }
     }
-    
+
   }
 
   return (

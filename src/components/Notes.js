@@ -4,14 +4,14 @@ import NoteItem from './NoteItem';
 import Addnote from './Addnote';
 
 
-const Notes = () => {
+const Notes = (props) => {
   const context = useContext(noteContext);
   const { notes, fetchnote, editnote } = context;
 
   const ref = useRef(null)
   const refClose = useRef(null)
   const [note, setNote] = useState({ id: "", etitle: "", edescription: "", etag: "" })
-  
+  const {showAlert} = props.showAlert;
 
 
   useEffect(() => {
@@ -23,6 +23,7 @@ const Notes = () => {
   const handleClick = async (e) => {
     await editnote(note.id, note.etitle, note.edescription, note.etag)
     refClose.current.click();
+    showAlert("Note Updated Successfully", "success");
     // setEditNoteCalled(true);  // This is not required
     //* Using async and await to make sure that the note is updated before fetching the notes again thus not reqiured to use useEffect
     await fetchnote();
@@ -83,7 +84,7 @@ const Notes = () => {
 
         {notes.length === 0 && <div className='container'>No notes to display</div>}
         {notes.map((note) => {
-          return <NoteItem note={note} updateNote={updateNote} key={note._id} />;
+          return <NoteItem note={note} showAlert={showAlert} updateNote={updateNote} key={note._id} />;
         })}
       </div>
     </>

@@ -9,9 +9,10 @@ const { body, validationResult } = require('express-validator');
 //* ROUTE 1 : Get all The NOTES using : GET " /api/notes/fetchallnotes". Login Required
 
 router.get('/fetchallnotes', fetchuser, async (req, res) => {
-
+    
     try {
         const notes = await Note.find({ user: req.user.id });
+       
         res.json(notes);
     } catch (error) {
         console.error(error.message);
@@ -29,7 +30,7 @@ router.post('/addnote', fetchuser, [
     body("description", "Description must be minimum 5 character").isLength({ min: 5 }),
 
 ], async (req, res) => {
-
+    
     try {
         const result = validationResult(req);
         if (!result.isEmpty()) {

@@ -1,8 +1,9 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 
-const Login = () => {
+const Login = (props) => {
   const navigate = useNavigate();
+  const { showAlert } = props;
   
   const handlesubmit = async (e) => {
     
@@ -19,6 +20,9 @@ const Login = () => {
     if (json.success) {
       localStorage.setItem('token', json.AuthTokken);
       navigate('/'); // redirect to home page
+      showAlert("Logged in successfully", "success");
+    } else {
+      showAlert(json.error, "danger");
     }
 
   }
