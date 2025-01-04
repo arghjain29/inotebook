@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 const Signup = (props) => {
   const navigate = useNavigate();
   const { showAlert } = props;
+  const url = "https://inotebook-three-rho.vercel.app";
 
 
   const handlesubmit = async (e) => {
@@ -14,7 +15,7 @@ const Signup = (props) => {
       return;
     }
 
-    const response = await fetch(`http://localhost:5000/api/auth/createUser`, {
+    const response = await fetch(`${url}/api/auth/createUser`, {
       method: 'POST',
       headers: {
         "content-type": 'application/json',
