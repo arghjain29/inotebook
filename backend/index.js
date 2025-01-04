@@ -8,7 +8,7 @@ const app = express()
 const port = 5000
 
 app.use(cors({
-  origin: [],
+  origin: ["https://inotebookfront.vercel.app/login"],
   methods: ['GET', 'POST'],
   credentials: true
 }))
