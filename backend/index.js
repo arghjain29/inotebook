@@ -9,12 +9,15 @@ const port = 5000
 
 app.use(cors({
   origin: "https://inotebookfront.vercel.app",
-  methods: ['GET', 'POST'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
 }))
 
+// Handle preflight requests (OPTIONS)
+app.options('*', cors());
 
 app.use(express.json());
+
 
 
 //* Available routes
