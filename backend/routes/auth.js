@@ -16,6 +16,9 @@ router.post('/createUser', [
     body("password", "password must be atleast 5 character").isLength({ min: 5 })
 ], async (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', 'https://inotebookfront.vercel.app');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
     const result = validationResult(req);
     if (!result.isEmpty()) {
         const success = false;
@@ -65,6 +68,9 @@ router.post('/login', [
     body("password", "password cannot be blank").exists()
 ], async (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', 'https://inotebookfront.vercel.app');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
     const result = validationResult(req);
     if (!result.isEmpty()) {
         const success = false;
@@ -103,6 +109,9 @@ router.post('/login', [
 
 router.post('/getuser', fetchuser, async (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', 'https://inotebookfront.vercel.app');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
     try {
         const userId = req.user.id;
         const user = await User.findById(userId).select("-password");
