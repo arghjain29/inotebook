@@ -11,7 +11,7 @@ app.use(cors({
   origin: "https://inotebookfront.vercel.app",
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
-}))
+}));
 
 // Handle preflight requests (OPTIONS)
 app.options('*', cors());

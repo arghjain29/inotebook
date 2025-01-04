@@ -15,7 +15,7 @@ router.post('/createUser', [
     body("email", "Enter a valid Email").isEmail(),
     body("password", "password must be atleast 5 character").isLength({ min: 5 })
 ], async (req, res) => {
-
+    res.setHeader('Access-Control-Allow-Origin', 'https://inotebookfront.vercel.app');
     const result = validationResult(req);
     if (!result.isEmpty()) {
         const success = false;
@@ -64,7 +64,7 @@ router.post('/login', [
     body("email", "Enter a valid Email").isEmail(),
     body("password", "password cannot be blank").exists()
 ], async (req, res) => {
-
+    res.setHeader('Access-Control-Allow-Origin', 'https://inotebookfront.vercel.app');
     const result = validationResult(req);
     if (!result.isEmpty()) {
         const success = false;
@@ -102,7 +102,7 @@ router.post('/login', [
 //* ROUTE 3 : Getting loggedin User details using : POST " /api/auth/getuser". Login Required
 
 router.post('/getuser', fetchuser, async (req, res) => {
-
+    res.setHeader('Access-Control-Allow-Origin', 'https://inotebookfront.vercel.app');
     try {
         const userId = req.user.id;
         const user = await User.findById(userId).select("-password");
