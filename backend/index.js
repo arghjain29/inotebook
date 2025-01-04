@@ -7,13 +7,13 @@ connectToMongo();
 const app = express()
 const port = 5000
 
-// app.use(cors({
-//   origin: "https://inotebookfront.vercel.app",
-//   methods: ['GET', 'POST'],
-//   credentials: true
-// }))
+app.use(cors({
+  origin: "https://inotebookfront.vercel.app",
+  methods: ['GET', 'POST'],
+  credentials: true
+}))
 
-app.use(cors());
+
 app.use(express.json());
 
 

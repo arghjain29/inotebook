@@ -13,6 +13,7 @@ const Login = (props) => {
       method: 'POST',
       headers: {
         "content-type": 'application/json',
+        "Access-Control-Allow-Origin": 'https://inotebookfront.vercel.app'
       },
       body: JSON.stringify({ email: e.target.email.value, password: e.target.password.value })
     });
