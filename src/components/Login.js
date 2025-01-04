@@ -4,11 +4,11 @@ import { useNavigate } from 'react-router-dom';
 const Login = (props) => {
   const navigate = useNavigate();
   const { showAlert } = props;
-  
+  const url = "https://inotebook-three-rho.vercel.app";
   const handlesubmit = async (e) => {
     
     e.preventDefault();
-    const response = await fetch(`http://localhost:5000/api/auth/login`, {
+    const response = await fetch(`${url}/api/auth/login`, {
       method: 'POST',
       headers: {
         "content-type": 'application/json',
