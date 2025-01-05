@@ -4,11 +4,13 @@ import { useNavigate } from 'react-router-dom';
 const Login = (props) => {
   const navigate = useNavigate();
   const { showAlert } = props;
-  const url = process.env.BACKEND_URL;
+  const url = process.env.REACT_APP_BACKEND_URL;
 
   const handlesubmit = async (e) => {
     
     e.preventDefault();
+    if (!url) {
+      console.error('Backend URL is not defined!');}
     const response = await fetch(`${url}/api/auth/login`, {
       method: 'POST',
       headers: {

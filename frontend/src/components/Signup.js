@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 const Signup = (props) => {
   const navigate = useNavigate();
   const { showAlert } = props;
-  const url = process.env.BACKEND_URL;
+  const url = process.env.REACT_APP_BACKEND_URL;
 
 
   const handlesubmit = async (e) => {
@@ -14,6 +14,8 @@ const Signup = (props) => {
       alert("Password does not match");
       return;
     }
+    if (!url) {
+      console.error('Backend URL is not defined!');}
 
     const response = await fetch(`${url}/api/auth/createUser`, {
       method: 'POST',

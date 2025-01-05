@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import NoteContext from './NoteContext'
 
 const NoteState = (props) => {
-  const host = process.env.BACKEND_URL;
+  const host = process.env.REACT_APP_BACKEND_URL;
 
   const notesinitial = []
   const [notes, setnotes] = useState(notesinitial);
