@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import NoteContext from './NoteContext'
-require('dotenv').config();
+
 
 const NoteState = (props) => {
   const host = process.env.REACT_APP_BACKEND_URL;
