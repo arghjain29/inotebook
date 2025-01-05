@@ -1,5 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
+require('dotenv').config();
 
 const Signup = (props) => {
   const navigate = useNavigate();
