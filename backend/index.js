@@ -8,8 +8,9 @@ const port = 5000
 
 app.use(cors({
   origin: process.env.FRONTEND_URL,
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials: true
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  credentials: true,
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
 // Handle preflight requests (OPTIONS)
