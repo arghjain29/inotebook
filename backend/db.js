@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 
 // const mongoURI = "mongodb://localhost:27017/inotebook"
-const mongoURI = process.env.MONGODB_URL
-
+var mongoURL = process.env.MONGODB_URL
+console.log(mongoURL);
 const connectToMongo = async () => {
-  mongoose.connect(mongoURI).then(() => console.log("Connected")).catch((e) => console.log(e.message));
+  mongoose.connect(mongoURL).then(() => console.log("Connected")).catch((e) => console.log(e.message));
 }
 module.exports = connectToMongo;
