@@ -7,7 +7,7 @@ const fetchuser = require('../middleware/fetchuser');
 
 
 
-const JWT_SECRET = "I_AM_A_Iron_man";
+const JWT_SECRET = process.env.JWT_SECRET;
 
 //* ROUTE 1 : Create a User using : POST " /api/auth/createUser" . No Login Required
 router.post('/createUser', [
@@ -115,10 +115,6 @@ router.post('/getuser', fetchuser, async (req, res) => {
     }
 
 });
-
-
-
-
 
 
 module.exports = router;

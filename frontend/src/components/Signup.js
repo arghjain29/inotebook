@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 const Signup = (props) => {
   const navigate = useNavigate();
   const { showAlert } = props;
-  const url = "https://inotebook-server-lyart.vercel.app";
+  const url = process.env.BACKEND_URL;
 
 
   const handlesubmit = async (e) => {
