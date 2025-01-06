@@ -9,8 +9,9 @@ const Login = (props) => {
   const handlesubmit = async (e) => {
     
     e.preventDefault();
-    if (!url) {
-      console.error('Backend URL is not defined!');}
+
+    if (!url) {console.error('Backend URL is not defined!');}
+    
     const response = await fetch(`${url}/api/auth/login`, {
       method: 'POST',
       headers: {
@@ -22,7 +23,7 @@ const Login = (props) => {
     
     if (json.success) {
       localStorage.setItem('token', json.AuthTokken);
-      console.log(json.AuthTokken);
+      // console.log(json.AuthTokken);
       navigate('/'); // redirect to home page
       showAlert("Logged in successfully", "success");
     } else {

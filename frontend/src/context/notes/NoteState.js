@@ -55,8 +55,10 @@ const NoteState = (props) => {
       },
       body: JSON.stringify({ title, description, tag })
     });
-    console.log(response.json);
-    setnotes(notes.concat({ title, description, tag }))
+    // console.log(response.json);
+    if (response) {
+      setnotes(notes.concat({ title, description, tag }))
+    }
 
   }
 
@@ -75,14 +77,15 @@ const NoteState = (props) => {
         }
 
       });
-      console.log(response.json);
-      const newnotes = notes.filter((note) => { return note._id !== _id })
-      setnotes(newnotes);
+   
+      if (response) {
+        const newnotes = notes.filter((note) => { return note._id !== _id })
+        setnotes(newnotes);
+      };
 
     } catch (error) {
-
+      console.log(error);
     }
-
   }
 
   //* Edit a Note
@@ -100,16 +103,17 @@ const NoteState = (props) => {
 
     });
 
-    for (let index = 0; index < notes.length; index++) {
-      const element = notes[index];
-      if (element._id === _id) {
-        element.title = title;
-        element.description = description;
-        element.tag = tag;
-        break;
+    if (response) {
+      for (let index = 0; index < notes.length; index++) {
+        const element = notes[index];
+        if (element._id === _id) {
+          element.title = title;
+          element.description = description;
+          element.tag = tag;
+          break;
+        }
       }
     }
-    console.log(response.json);
   }
 
   return (
